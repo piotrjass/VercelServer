@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-const dotenv = require('dotenv').config({ path: 'config.env' });
+const dotenv = require('dotenv').config({ path: '.env' });
 const http = require('http');
 const mongoose = require('mongoose');
-const app = require('./app');
+// const app = require('./app');
+const app = require('./api/index');
 // conne
 const DB = process.env.DATABASE.replace(
   '<password>',

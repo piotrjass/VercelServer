@@ -41,7 +41,7 @@
 
 // app.use('/.netlify/functions/api', router);
 // module.exports.handler = serverless(app);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -52,21 +52,26 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const serverless = require('serverless-http');
-// Routes
-const articlesRouter = require('../routes/articlesRoutes');
-const authRouter = require('../routes/authRoutes');
-const collectionsRouter = require('../routes/collectionsRoutes');
-const commentsRouter = require('../routes/commentsRoutes');
-const personalCredentialRouter = require('../routes/personalCredentialsRoutes');
-const questionRouter = require('../routes/questionRoutes');
-const quizRouter = require('../routes/quizRoutes');
-const userFavCardRouter = require('../routes/userFavCardsRoutes');
-const userFavCollectionsRoutes = require('../routes/userFavCollectionsRoutes');
-const userStreakRouter = require('../routes/userStreakRoutes');
-//
-const homeRouter = require('../routes/homeRoutes');
-//
-const userRouter = require('../routes/userRoutes');
+const router = express.Router();
+router.get('/', (req, res) => {
+  res.send('App is running..');
+});
+
+// // Routes
+// const articlesRouter = require('../routes/articlesRoutes');
+// const authRouter = require('../routes/authRoutes');
+// const collectionsRouter = require('../routes/collectionsRoutes');
+// const commentsRouter = require('../routes/commentsRoutes');
+// const personalCredentialRouter = require('../routes/personalCredentialsRoutes');
+// const questionRouter = require('../routes/questionRoutes');
+// const quizRouter = require('../routes/quizRoutes');
+// const userFavCardRouter = require('../routes/userFavCardsRoutes');
+// const userFavCollectionsRoutes = require('../routes/userFavCollectionsRoutes');
+// const userStreakRouter = require('../routes/userStreakRoutes');
+// //
+// const homeRouter = require('../routes/homeRoutes');
+// //
+// const userRouter = require('../routes/userRoutes');
 // 1) Development loggin
 const app = express();
 // if (process.env.NODE_ENV === 'development') {
@@ -95,26 +100,26 @@ app.use(
   })
 );
 // 8) Body parsing and compression
-app.use(bodyParser.json());
-app.use(compression());
+// app.use(bodyParser.json());
+// app.use(compression());
 
-const routers = [
-  userRouter,
-  articlesRouter,
-  authRouter,
-  collectionsRouter,
-  commentsRouter,
-  personalCredentialRouter,
-  questionRouter,
-  quizRouter,
-  userFavCardRouter,
-  userFavCollectionsRoutes,
-  userStreakRouter,
-  homeRouter
-];
+// const routers = [
+//   userRouter,
+//   articlesRouter,
+//   authRouter,
+//   collectionsRouter,
+//   commentsRouter,
+//   personalCredentialRouter,
+//   questionRouter,
+//   quizRouter,
+//   userFavCardRouter,
+//   userFavCollectionsRoutes,
+//   userStreakRouter,
+//   homeRouter
+// ];
 
-routers.forEach(router => {
-  app.use('/api/v1', router);
-});
-
+// routers.forEach(router => {
+//   app.use('/api/v1', router);
+// });
+app.use('/.netlify/functions/api', router);
 module.exports.handler = serverless(app);

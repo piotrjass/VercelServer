@@ -2,7 +2,7 @@ const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
 //
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -25,7 +25,7 @@ const userStreakRouter = require('../routes/userStreakRoutes');
 const homeRouter = require('../routes/homeRoutes');
 const userRouter = require('../routes/userRoutes');
 // middleware
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,

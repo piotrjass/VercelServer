@@ -53,20 +53,20 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const serverless = require('serverless-http');
 // Routes
-const articlesRouter = require('./routes/articlesRoutes');
-const authRouter = require('./routes/authRoutes');
-const collectionsRouter = require('./routes/collectionsRoutes');
-const commentsRouter = require('./routes/commentsRoutes');
-const personalCredentialRouter = require('./routes/personalCredentialsRoutes');
-const questionRouter = require('./routes/questionRoutes');
-const quizRouter = require('./routes/quizRoutes');
-const userFavCardRouter = require('./routes/userFavCardsRoutes');
-const userFavCollectionsRoutes = require('./routes/userFavCollectionsRoutes');
-const userStreakRouter = require('./routes/userStreakRoutes');
+const articlesRouter = require('../routes/articlesRoutes');
+const authRouter = require('../routes/authRoutes');
+const collectionsRouter = require('../routes/collectionsRoutes');
+const commentsRouter = require('../routes/commentsRoutes');
+const personalCredentialRouter = require('../routes/personalCredentialsRoutes');
+const questionRouter = require('../routes/questionRoutes');
+const quizRouter = require('../routes/quizRoutes');
+const userFavCardRouter = require('../routes/userFavCardsRoutes');
+const userFavCollectionsRoutes = require('../routes/userFavCollectionsRoutes');
+const userStreakRouter = require('../routes/userStreakRoutes');
 //
-const homeRouter = require('./routes/homeRoutes');
+const homeRouter = require('../routes/homeRoutes');
 //
-const userRouter = require('./routes/userRoutes');
+const userRouter = require('../routes/userRoutes');
 // 1) Development loggin
 const app = express();
 if (process.env.NODE_ENV === 'development') {

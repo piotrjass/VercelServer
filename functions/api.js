@@ -1,6 +1,16 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
+//
+const morgan = require('morgan');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+
 //routes
 const articlesRouter = require('../routes/articlesRoutes');
 const authRouter = require('../routes/authRoutes');

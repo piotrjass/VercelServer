@@ -5,20 +5,27 @@ const router = express.Router();
 
 let records = [];
 
+//Get all students
 router.get('/', (req, res) => {
   res.send('App is running..');
 });
 
+//Create new record
 router.post('/add', (req, res) => {
   res.send('New record added.');
 });
 
+//delete existing record
 router.delete('/', (req, res) => {
   res.send('Deleted existing record');
 });
+
+//updating existing record
 router.put('/', (req, res) => {
   res.send('Updating existing record');
 });
+const homeRouter = require('../routes/homeRoutes');
+//showing demo records
 router.get('/demo', (req, res) => {
   res.json([
     {
@@ -39,5 +46,5 @@ router.get('/demo', (req, res) => {
   ]);
 });
 
-app.use('/', router);
+app.use('/.netlify/functions/api', router);
 module.exports.handler = serverless(app);

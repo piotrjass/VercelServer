@@ -7,7 +7,7 @@ let records = [];
 
 //Get all students
 router.get('/', (req, res) => {
-  res.send('App is running!');
+  res.send('App is running..');
 });
 
 //Create new record
@@ -46,6 +46,5 @@ router.get('/demo', (req, res) => {
   ]);
 });
 
-app.use(router);
+app.use('/.netlify/functions/api', router);
 module.exports.handler = serverless(app);
-// module.exports = app;

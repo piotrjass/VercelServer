@@ -69,9 +69,9 @@ const homeRouter = require('../routes/homeRoutes');
 const userRouter = require('../routes/userRoutes');
 // 1) Development loggin
 const app = express();
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'));
+// }
 // 2) Limit requests from same API
 
 const limiter = rateLimit({
@@ -115,10 +115,6 @@ const routers = [
 
 routers.forEach(router => {
   app.use('/api/v1', router);
-});
-
-router.get('/', (req, res) => {
-  res.send('App is running..');
 });
 
 module.exports.handler = serverless(app);

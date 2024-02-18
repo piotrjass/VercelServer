@@ -3,45 +3,49 @@ const serverless = require('serverless-http');
 const app = express();
 const router = express.Router();
 
+let records = [];
+
+//Get all students
 router.get('/', (req, res) => {
-  res.send('App is running..');
+  res.send('App is running!');
 });
 
-// const articlesRouter = require('../routes/articlesRoutes');
-// const authRouter = require('../routes/authRoutes');
-// const collectionsRouter = require('../routes/collectionsRoutes');
-// const commentsRouter = require('../routes/commentsRoutes');
-// const personalCredentialRouter = require('../routes/personalCredentialsRoutes');
-// const questionRouter = require('../routes/questionRoutes');
-// const quizRouter = require('../routes/quizRoutes');
-// const userFavCardRouter = require('../routes/userFavCardsRoutes');
-// const userFavCollectionsRoutes = require('../routes/userFavCollectionsRoutes');
-// const userStreakRouter = require('../routes/userStreakRoutes');
-// //
-// const homeRouter = require('../routes/homeRoutes');
-// const userRouter = require('../routes/userRoutes');
-// //
-// const routers = [
-//   userRouter,
-//   articlesRouter,
-//   authRouter,
-//   collectionsRouter,
-//   commentsRouter,
-//   personalCredentialRouter,
-//   questionRouter,
-//   quizRouter,
-//   userFavCardRouter,
-//   userFavCollectionsRoutes,
-//   userStreakRouter,
-//   homeRouter
-// ];
+//Create new record
+router.post('/add', (req, res) => {
+  res.send('New record added.');
+});
 
-// routers.forEach(router => {
-//   app.use('/api/v1', router);
-// });
-// app.use('/.netlify/functions/api', router);
+//delete existing record
+router.delete('/', (req, res) => {
+  res.send('Deleted existing record');
+});
+
+//updating existing record
+router.put('/', (req, res) => {
+  res.send('Updating existing record');
+});
+
+//showing demo records
+router.get('/demo', (req, res) => {
+  res.json([
+    {
+      id: '001',
+      name: 'Smith',
+      email: 'smith@gmail.com'
+    },
+    {
+      id: '002',
+      name: 'Sam',
+      email: 'sam@gmail.com'
+    },
+    {
+      id: '003',
+      name: 'lily',
+      email: 'lily@gmail.com'
+    }
+  ]);
+});
+
 app.use(router);
-module.exports.handler = serverless(app);
-
-// app.use('/.netlify/functions/api', router);
 // module.exports.handler = serverless(app);
+module.exports = app;

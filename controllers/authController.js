@@ -26,7 +26,6 @@ exports.login = async (req, res, next) => {
 
 exports.verifyToken = async (req, res, next) => {
   const token = await req.headers.authorization.replace('Bearer ', '');
-  console.log(token);
   if (!token) {
     return res.status(401).json({ message: 'No authorization' });
   }

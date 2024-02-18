@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const connectToDatabase = async () => {
-  const DB = process.env.DATABASE.replace(
-    '<password>',
-    process.env.DATABASE_PASSWORD
-  );
+  const DB = process.env.DATABASE;
 
   try {
     await mongoose.connect(DB, {

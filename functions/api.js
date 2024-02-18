@@ -1,50 +1,56 @@
 const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
-const router = express.Router();
-
-let records = [];
-
-//Get all students
-router.get('/', (req, res) => {
-  res.send('App is running..');
-});
-
-//Create new record
-router.post('/add', (req, res) => {
-  res.send('New record added.');
-});
-
-//delete existing record
-router.delete('/', (req, res) => {
-  res.send('Deleted existing record');
-});
-
-//updating existing record
-router.put('/', (req, res) => {
-  res.send('Updating existing record');
-});
+//routes
+const articlesRouter = require('../routes/articlesRoutes');
+const authRouter = require('../routes/authRoutes');
+const collectionsRouter = require('../routes/collectionsRoutes');
+const commentsRouter = require('../routes/commentsRoutes');
+const personalCredentialRouter = require('../routes/personalCredentialsRoutes');
+const questionRouter = require('../routes/questionRoutes');
+const quizRouter = require('../routes/quizRoutes');
+const userFavCardRouter = require('../routes/userFavCardsRoutes');
+const userFavCollectionsRoutes = require('../routes/userFavCollectionsRoutes');
+const userStreakRouter = require('../routes/userStreakRoutes');
 const homeRouter = require('../routes/homeRoutes');
-//showing demo records
-router.get('/demo', (req, res) => {
-  res.json([
-    {
-      id: '001',
-      name: 'Smith',
-      email: 'smith@gmail.com'
-    },
-    {
-      id: '002',
-      name: 'Sam',
-      email: 'sam@gmail.com'
-    },
-    {
-      id: '003',
-      name: 'lily',
-      email: 'lily@gmail.com'
-    }
-  ]);
+const userRouter = require('../routes/userRoutes');
+// middleware
+app.use(morgan('dev'));
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!'
+});
+app.use('/api', limiter);
+app.use(helmet());
+app.use(express.json({ limit: '10kb' }));
+app.use(mongoSanitize());
+app.use(xss());
+app.use(
+  cors({
+    origin: '*'
+  })
+);
+app.use(bodyParser.json());
+app.use(compression());
+
+const routers = [
+  userRouter,
+  articlesRouter,
+  authRouter,
+  collectionsRouter,
+  commentsRouter,
+  personalCredentialRouter,
+  questionRouter,
+  quizRouter,
+  userFavCardRouter,
+  userFavCollectionsRoutes,
+  userStreakRouter,
+  homeRouter
+];
+
+routers.forEach(router => {
+  app.use('/.netlify/functions/api', router);
 });
 
-app.use('/.netlify/functions/api', homeRouter);
 module.exports.handler = serverless(app);

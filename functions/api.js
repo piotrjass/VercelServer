@@ -117,4 +117,8 @@ routers.forEach(router => {
   app.use('/api/v1', router);
 });
 
+router.get('/', (req, res) => {
+  res.send('App is running..');
+});
+
 module.exports.handler = serverless(app);

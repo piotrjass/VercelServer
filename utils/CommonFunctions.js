@@ -7,10 +7,7 @@ const mongoose = require('mongoose');
 // models
 const User = require('../models/userModel');
 
-const DB = process.env.DATABASE.replace(
-  '<password>',
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.DATABASE;
 mongoose
   .connect(DB, {
     dbName: 'JSQuiz',

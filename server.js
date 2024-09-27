@@ -3,7 +3,8 @@ const dotenv = require('dotenv').config({ path: '.env' });
 const http = require('http');
 const mongoose = require('mongoose');
 // const app = require('./app');
-const app = require('./api/index');
+const app = require('./app');
+const api = require('../server/functions/api');
 // conne
 const DB = process.env.DATABASE.replace(
   '<password>',
@@ -24,7 +25,8 @@ const port = process.env.PORT;
 // eslint-disable-next-line no-unused-vars
 
 // eslint-disable-next-line no-unused-vars
-const server = http.createServer(app);
+// const server = http.createServer(app);
+const server = http.createServer(api);
 
 server.listen(port, () => {
   console.log(`App running on port ${port}...`);

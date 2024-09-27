@@ -8,7 +8,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx parcel index.html"
+    "build": "netlify deploy --prod",
+    "dev": "nodemon -L server.js"
   },
   "author": "",
   "license": "ISC",
